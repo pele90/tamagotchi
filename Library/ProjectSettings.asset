@@ -3,11 +3,18 @@
 --- !u!129 &1
 PlayerSettings:
   m_ObjectHideFlags: 0
+<<<<<<< HEAD
   serializedVersion: 15
   productGUID: 57b1d70ffd2032c42a60ab74eeafaea2
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
+=======
+  serializedVersion: 14
+  productGUID: 511c122af3936e94c996f2d0b58e3021
+  AndroidProfiler: 0
+  AndroidFilterTouchesWhenObscured: 0
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   defaultScreenOrientation: 4
   targetDevice: 2
   useOnDemandResources: 0
@@ -52,6 +59,10 @@ PlayerSettings:
   m_StackTraceTypes: 010000000100000001000000010000000100000001000000
   iosShowActivityIndicatorOnLoading: -1
   androidShowActivityIndicatorOnLoading: -1
+<<<<<<< HEAD
+=======
+  tizenShowActivityIndicatorOnLoading: -1
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   iosAppInBackgroundBehavior: 0
   displayResolutionDialog: 1
   iosAllowHTTPDownload: 1
@@ -64,9 +75,16 @@ PlayerSettings:
   preserveFramebufferAlpha: 0
   disableDepthAndStencilBuffers: 0
   androidBlitType: 0
+<<<<<<< HEAD
   defaultIsNativeResolution: 1
   macRetinaSupport: 1
   runInBackground: 1
+=======
+  defaultIsFullScreen: 1
+  defaultIsNativeResolution: 1
+  macRetinaSupport: 1
+  runInBackground: 0
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   captureSingleScreen: 0
   muteOtherAudioSources: 0
   Prepare IOS For Recording: 0
@@ -80,7 +98,11 @@ PlayerSettings:
   resizableWindow: 0
   useMacAppStoreValidation: 0
   macAppStoreCategory: public.app-category.games
+<<<<<<< HEAD
   gpuSkinning: 1
+=======
+  gpuSkinning: 0
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   graphicsJobs: 0
   xboxPIXTextureCapture: 0
   xboxEnableAvatar: 0
@@ -90,7 +112,12 @@ PlayerSettings:
   visibleInBackground: 1
   allowFullscreenSwitch: 1
   graphicsJobMode: 0
+<<<<<<< HEAD
   fullscreenMode: 1
+=======
+  macFullscreenMode: 2
+  d3d11FullscreenMode: 1
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   xboxSpeechDB: 0
   xboxEnableHeadOrientation: 0
   xboxEnableGuest: 0
@@ -106,19 +133,38 @@ PlayerSettings:
   xboxOneLoggingLevel: 1
   xboxOneDisableEsram: 0
   xboxOnePresentImmediateThreshold: 0
+<<<<<<< HEAD
   switchQueueCommandMemory: 0
   videoMemoryForVertexBuffers: 0
   psp2PowerMode: 0
   psp2AcquireBGM: 1
   vulkanEnableSetSRGBWrite: 0
   vulkanUseSWCommandBuffers: 0
+=======
+  videoMemoryForVertexBuffers: 0
+  psp2PowerMode: 0
+  psp2AcquireBGM: 1
+  wiiUTVResolution: 0
+  wiiUGamePadMSAA: 1
+  wiiUSupportsNunchuk: 0
+  wiiUSupportsClassicController: 0
+  wiiUSupportsBalanceBoard: 0
+  wiiUSupportsMotionPlus: 0
+  wiiUSupportsProController: 0
+  wiiUAllowScreenCapture: 1
+  wiiUControllerCount: 0
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   m_SupportedAspectRatios:
     4:3: 1
     5:4: 1
     16:10: 1
     16:9: 1
     Others: 1
+<<<<<<< HEAD
   bundleVersion: 0.1
+=======
+  bundleVersion: 1.0
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -142,7 +188,10 @@ PlayerSettings:
     oculus:
       sharedDepthBuffer: 0
       dashSupport: 0
+<<<<<<< HEAD
     enable360StereoCapture: 0
+=======
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   protectGraphicsMemory: 0
   useHDRDisplay: 0
   m_ColorGamuts: 00000000
@@ -165,10 +214,19 @@ PlayerSettings:
   CreateWallpaper: 0
   APKExpansionFiles: 0
   keepLoadedShadersAlive: 0
+<<<<<<< HEAD
   StripUnusedMeshComponents: 1
   VertexChannelCompressionMask: 4054
   iPhoneSdkVersion: 988
   iOSTargetOSVersionString: 8.0
+=======
+  StripUnusedMeshComponents: 0
+  VertexChannelCompressionMask:
+    serializedVersion: 2
+    m_Bits: 238
+  iPhoneSdkVersion: 988
+  iOSTargetOSVersionString: 7.0
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   tvOSSdkVersion: 0
   tvOSRequireExtendedGameController: 0
   tvOSTargetOSVersionString: 9.0
@@ -195,7 +253,10 @@ PlayerSettings:
   tvOSSmallIconLayers: []
   tvOSSmallIconLayers2x: []
   tvOSLargeIconLayers: []
+<<<<<<< HEAD
   tvOSLargeIconLayers2x: []
+=======
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   tvOSTopShelfImageLayers: []
   tvOSTopShelfImageLayers2x: []
   tvOSTopShelfImageWideLayers: []
@@ -229,6 +290,7 @@ PlayerSettings:
   appleDeveloperTeamID: 
   iOSManualSigningProvisioningProfileID: 
   tvOSManualSigningProvisioningProfileID: 
+<<<<<<< HEAD
   iOSManualSigningProvisioningProfileType: 0
   tvOSManualSigningProvisioningProfileType: 0
   appleEnableAutomaticSigning: 0
@@ -239,11 +301,19 @@ PlayerSettings:
   templatePackageId: com.unity.3d@1.0.2
   templateDefaultScene: Assets/Scenes/SampleScene.unity
   AndroidTargetArchitectures: 5
+=======
+  appleEnableAutomaticSigning: 0
+  clonedFromGUID: 00000000000000000000000000000000
+  AndroidTargetDevice: 0
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: 
   AndroidKeyaliasName: 
+<<<<<<< HEAD
   AndroidBuildApkPerCpuArchitecture: 0
+=======
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
   AndroidEnableTango: 0
@@ -256,6 +326,7 @@ PlayerSettings:
   androidGamepadSupportLevel: 0
   resolutionDialogBanner: {fileID: 0}
   m_BuildTargetIcons: []
+<<<<<<< HEAD
   m_BuildTargetPlatformIcons: []
   m_BuildTargetBatching:
   - m_BuildTarget: Standalone
@@ -292,6 +363,11 @@ PlayerSettings:
     m_Devices:
     - Oculus
     - OpenVR
+=======
+  m_BuildTargetBatching: []
+  m_BuildTargetGraphicsAPIs: []
+  m_BuildTargetVRSettings: []
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   m_BuildTargetEnableVuforiaSettings: []
   openGLRequireES31: 0
   openGLRequireES31AEP: 0
@@ -301,9 +377,31 @@ PlayerSettings:
     iPhone: 1
     tvOS: 1
   m_BuildTargetGroupLightmapEncodingQuality: []
+<<<<<<< HEAD
   m_BuildTargetGroupLightmapSettings: []
   playModeTestRunnerEnabled: 0
   runPlayModeTestAsEditModeTest: 0
+=======
+  wiiUTitleID: 0005000011000000
+  wiiUGroupID: 00010000
+  wiiUCommonSaveSize: 4096
+  wiiUAccountSaveSize: 2048
+  wiiUOlvAccessKey: 0
+  wiiUTinCode: 0
+  wiiUJoinGameId: 0
+  wiiUJoinGameModeMask: 0000000000000000
+  wiiUCommonBossSize: 0
+  wiiUAccountBossSize: 0
+  wiiUAddOnUniqueIDs: []
+  wiiUMainThreadStackSize: 3072
+  wiiULoaderThreadStackSize: 1024
+  wiiUSystemHeapSize: 128
+  wiiUTVStartupScreen: {fileID: 0}
+  wiiUGamePadStartupScreen: {fileID: 0}
+  wiiUDrcBufferDisabled: 0
+  wiiUProfilerLibPath: 
+  playModeTestRunnerEnabled: 0
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   actionOnDotNetUnhandledException: 1
   enableInternalProfiler: 0
   logObjCUncaughtExceptions: 1
@@ -424,9 +522,12 @@ PlayerSettings:
   switchAllowsRuntimeAddOnContentInstall: 0
   switchDataLossConfirmation: 0
   switchSupportedNpadStyles: 3
+<<<<<<< HEAD
   switchNativeFsCacheSize: 32
   switchIsHoldTypeHorizontal: 0
   switchSupportedNpadCount: 8
+=======
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   switchSocketConfigEnabled: 0
   switchTcpInitialSendBufferSize: 32
   switchTcpInitialReceiveBufferSize: 64
@@ -482,7 +583,10 @@ PlayerSettings:
   ps4pnFriends: 1
   ps4pnGameCustomData: 1
   playerPrefsSupport: 0
+<<<<<<< HEAD
   enableApplicationExit: 0
+=======
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   restrictedAudioUsageRights: 0
   ps4UseResolutionFallback: 0
   ps4ReprojectionSupport: 0
@@ -553,19 +657,28 @@ PlayerSettings:
   psp2InfoBarOnStartup: 0
   psp2InfoBarColor: 0
   psp2ScriptOptimizationLevel: 0
+<<<<<<< HEAD
+=======
+  psmSplashimage: {fileID: 0}
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   splashScreenBackgroundSourceLandscape: {fileID: 0}
   splashScreenBackgroundSourcePortrait: {fileID: 0}
   spritePackerPolicy: 
   webGLMemorySize: 256
   webGLExceptionSupport: 1
   webGLNameFilesAsHashes: 0
+<<<<<<< HEAD
   webGLDataCaching: 1
+=======
+  webGLDataCaching: 0
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   webGLDebugSymbols: 0
   webGLEmscriptenArgs: 
   webGLModulesDirectory: 
   webGLTemplate: APPLICATION:Default
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
+<<<<<<< HEAD
   webGLCompressionFormat: 1
   webGLLinkerTarget: 1
   scriptingDefineSymbols: {}
@@ -574,21 +687,40 @@ PlayerSettings:
   il2cppCompilerConfiguration: {}
   incrementalIl2cppBuild: {}
   allowUnsafeCode: 0
+=======
+  webGLUseWasm: 0
+  webGLCompressionFormat: 1
+  scriptingDefineSymbols: {}
+  platformArchitecture: {}
+  scriptingBackend: {}
+  incrementalIl2cppBuild: {}
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 0
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
+<<<<<<< HEAD
   metroPackageName: Template_3D
+=======
+  metroPackageName: Tamagotchi
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
+<<<<<<< HEAD
   metroApplicationDescription: Template_3D
   wsaImages: {}
   metroTileShortName: 
+=======
+  metroApplicationDescription: Tamagotchi
+  wsaImages: {}
+  metroTileShortName: 
+  metroCommandLineArgsFile: 
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
@@ -604,6 +736,17 @@ PlayerSettings:
   metroFTAFileTypes: []
   metroProtocolName: 
   metroCompilationOverrides: 1
+<<<<<<< HEAD
+=======
+  tizenProductDescription: 
+  tizenProductURL: 
+  tizenSigningProfileName: 
+  tizenGPSPermissions: 0
+  tizenMicrophonePermissions: 0
+  tizenDeploymentTarget: 
+  tizenDeploymentTargetType: -1
+  tizenMinOSVersion: 1
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   n3dsUseExtSaveData: 0
   n3dsCompressStaticMem: 1
   n3dsExtSaveDataNumber: 0x12345
@@ -624,7 +767,10 @@ PlayerSettings:
   XboxOneGameOsOverridePath: 
   XboxOnePackagingOverridePath: 
   XboxOneAppManifestOverridePath: 
+<<<<<<< HEAD
   XboxOneVersion: 1.0.0.0
+=======
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   XboxOnePackageEncryption: 0
   XboxOnePackageUpdateGranularity: 2
   XboxOneDescription: 
@@ -638,7 +784,10 @@ PlayerSettings:
   XboxOneSplashScreen: {fileID: 0}
   XboxOneAllowedProductIds: []
   XboxOnePersistentLocalStorageSize: 0
+<<<<<<< HEAD
   XboxOneXTitleMemory: 8
+=======
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   xboxOneScriptCompiler: 0
   vrEditorSettings:
     daydream:
@@ -648,8 +797,13 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
+<<<<<<< HEAD
   cloudProjectId: 4fe3f213-8b17-49df-be68-92031b4ae93b
   projectName: Tamagotchi (1)
+=======
+  cloudProjectId: 7ba3cb45-fc4f-475f-9e83-84ba1628c46a
+  projectName: Tamagotchi
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   organizationId: pele90
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0

@@ -3,6 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< HEAD
   tags:
   - SelectDeco
   - Feed
@@ -13,6 +14,9 @@ TagManager:
   - HealthMeter
   - Medicine
   - Light
+=======
+  tags: []
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   layers:
   - Default
   - TransparentFX
@@ -22,7 +26,11 @@ TagManager:
   - UI
   - 
   - 
+<<<<<<< HEAD
   - PostProcessing
+=======
+  - 
+>>>>>>> c8b143b4d3b36ac5de869e42740d829e15b13dde
   - 
   - 
   - 
