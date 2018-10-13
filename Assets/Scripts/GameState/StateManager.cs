@@ -78,7 +78,7 @@ public class StateManager : MonoBehaviour
             if (!idle && timeSinceLastInput > timeToIdle)
             {
                 Instance.idle = true;
-                Debug.Log("Going into IDLE state...");
+                //Debug.Log("Going into IDLE state...");
                 Instance.selectedDeco.SetActive(false);
                 Instance.currentActionObject = null;
                 Instance.currentSelectedState = new TimerState();
