@@ -20,7 +20,7 @@ public class LightState : IGameState
         isOff = false;
     }
 
-    public void UpdateState()
+    public void Update()
     {
         Debug.Log("Updating Light State...");
     }

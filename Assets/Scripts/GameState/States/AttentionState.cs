@@ -18,7 +18,7 @@ public class AttentionState : IGameState
         ViewManager.Instance.ActivateView(ATTENTION_VIEW);
     }
 
-    public void UpdateState()
+    public void Update()
     {
         Debug.Log("Updating Attention State...");
     }

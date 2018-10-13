@@ -2,7 +2,7 @@
 {
     void Init();
 
-    void UpdateState();
+    void Update();
 
     void AButton();
 

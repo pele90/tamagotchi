@@ -20,7 +20,7 @@ public class DisciplineState : IGameState
         ViewManager.Instance.ActivateView(DISCIPLINE_VIEW);
     }
 
-    public void UpdateState()
+    public void Update()
     {
         Debug.Log("Updating Discipline State...");
     }

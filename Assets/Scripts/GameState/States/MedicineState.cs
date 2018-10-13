@@ -18,7 +18,7 @@ public class MedicineState : IGameState
         ViewManager.Instance.ActivateView(MEDICINE_VIEW);
     }
 
-    public void UpdateState()
+    public void Update()
     {
         Debug.Log("Updating Medicine State...");
     }

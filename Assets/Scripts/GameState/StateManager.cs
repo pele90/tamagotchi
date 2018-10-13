@@ -55,36 +55,42 @@ public class StateManager : MonoBehaviour
 
     public void Init()
     {
-        StateCounter = 0;
-        activeState = ActionType.ActionOption.None;
-        currentSelectedState = new FeedState();
-        currentActionObject = GameObject.FindGameObjectWithTag("Feed");
-        selectedDeco = GameObject.FindGameObjectWithTag("SelectDeco");
+        Instance.StateCounter = 0;
+        Instance.activeState = ActionType.ActionOption.None;
+        Instance.currentSelectedState = new FeedState();
+        Instance.currentActionObject = GameObject.FindGameObjectWithTag("Feed");
+        Instance.selectedDeco = GameObject.FindGameObjectWithTag("SelectDeco");
         SetDecoPosition(currentActionObject);
     }
 
-    public void UpdateState()
+    public void Update()
     {
-        if (activeState != ActionType.ActionOption.None)
-            timeSinceLastInput = 0;
+        if (Instance.activeState != ActionType.ActionOption.None)
+        {
+            Instance.timeSinceLastInput = 0;
+
+            // update current state
+            Instance.currentSelectedState.Update();
+        }
+
         else
         {
             if (!idle && timeSinceLastInput > timeToIdle)
             {
-                idle = true;
+                Instance.idle = true;
                 Debug.Log("Going into IDLE state...");
-                selectedDeco.SetActive(false);
-                currentActionObject = null;
-                currentSelectedState = new TimerState();
+                Instance.selectedDeco.SetActive(false);
+                Instance.currentActionObject = null;
+                Instance.currentSelectedState = new TimerState();
                 //activeState = ActionType.ActionOption.Timer;
             }
         }
 
-        if(_stateCounter != _lastStateCounter)
+        if (Instance._stateCounter != Instance._lastStateCounter)
         {
             ActionType.ActionOption option;
-            ActionType.ActionOptions.TryGetValue(StateCounter, out option);
-           
+            ActionType.ActionOptions.TryGetValue(Instance.StateCounter, out option);
+
             //if(activeState == ActionType.ActionOption.Timer)
             //{
             //    option = lastSelectedOption;
@@ -95,65 +101,67 @@ public class StateManager : MonoBehaviour
             switch (option)
             {
                 case ActionType.ActionOption.Feed:
-                    currentActionObject = GameObject.FindGameObjectWithTag("Feed");
-                    currentSelectedState = new FeedState();
+                    Instance.currentActionObject = GameObject.FindGameObjectWithTag("Feed");
+                    Instance.currentSelectedState = new FeedState();
                     break;
 
                 case ActionType.ActionOption.Light:
-                    currentActionObject = GameObject.FindGameObjectWithTag("Light");
-                    currentSelectedState = new LightState();
+                    Instance.currentActionObject = GameObject.FindGameObjectWithTag("Light");
+                    Instance.currentSelectedState = new LightState();
                     break;
 
                 case ActionType.ActionOption.Play:
-                    currentActionObject = GameObject.FindGameObjectWithTag("Play");
-                    currentSelectedState = new PlayState();
+                    Instance.currentActionObject = GameObject.FindGameObjectWithTag("Play");
+                    Instance.currentSelectedState = new PlayState();
                     break;
 
                 case ActionType.ActionOption.Medicine:
-                    currentActionObject = GameObject.FindGameObjectWithTag("Medicine");
-                    currentSelectedState = new MedicineState();
+                    Instance.currentActionObject = GameObject.FindGameObjectWithTag("Medicine");
+                    Instance.currentSelectedState = new MedicineState();
                     break;
 
                 case ActionType.ActionOption.Duck:
-                    currentActionObject = GameObject.FindGameObjectWithTag("Duck");
-                    currentSelectedState = new DuckState();
+                    Instance.currentActionObject = GameObject.FindGameObjectWithTag("Duck");
+                    Instance.currentSelectedState = new DuckState();
                     break;
 
                 case ActionType.ActionOption.HealthMeter:
-                    currentActionObject = GameObject.FindGameObjectWithTag("HealthMeter");
-                    currentSelectedState = new HealthMeterState();
+                    Instance.currentActionObject = GameObject.FindGameObjectWithTag("HealthMeter");
+                    Instance.currentSelectedState = new HealthMeterState();
                     break;
 
                 case ActionType.ActionOption.Discipline:
-                    currentActionObject = GameObject.FindGameObjectWithTag("Discipline");
-                    currentSelectedState = new DisciplineState();
+                    Instance.currentActionObject = GameObject.FindGameObjectWithTag("Discipline");
+                    Instance.currentSelectedState = new DisciplineState();
                     break;
 
                 case ActionType.ActionOption.Attention:
-                    currentActionObject = GameObject.FindGameObjectWithTag("Attention");
-                    currentSelectedState = new AttentionState();
+                    Instance.currentActionObject = GameObject.FindGameObjectWithTag("Attention");
+                    Instance.currentSelectedState = new AttentionState();
                     break;
             }
 
-            SetDecoPosition(currentActionObject);
+            // set selected action marker on currently selected state
+            SetDecoPosition(Instance.currentActionObject);
 
-            _lastStateCounter = _stateCounter;
+            // set current state as last state
+            Instance._lastStateCounter = Instance._stateCounter;
 
-            timeSinceLastInput = 0;
-            idle = false;
+            Instance.timeSinceLastInput = 0;
+            Instance.idle = false;
         }
 
-        timeSinceLastInput += Time.deltaTime;
+        Instance.timeSinceLastInput += Time.deltaTime;
     }
 
     public void AButton()
     {
-        if(GameManager.Instance.Interactable)
+        if (GameManager.Instance.Interactable)
         {
-            if (activeState == ActionType.ActionOption.None)
-                StateCounter++;
+            if (Instance.activeState == ActionType.ActionOption.None)
+                Instance.StateCounter++;
             else
-                currentSelectedState.AButton();
+                Instance.currentSelectedState.AButton();
         }
     }
 
@@ -161,16 +169,16 @@ public class StateManager : MonoBehaviour
     {
         if (GameManager.Instance.Interactable)
         {
-            if (activeState == ActionType.ActionOption.None)
+            if (Instance.activeState == ActionType.ActionOption.None)
             {
                 ActionType.ActionOption option;
-                ActionType.ActionOptions.TryGetValue(StateCounter, out option);
-                activeState = option;
-                currentSelectedState.Init();
+                ActionType.ActionOptions.TryGetValue(Instance.StateCounter, out option);
+                Instance.activeState = option;
+                Instance.currentSelectedState.Init();
             }
             else
             {
-                currentSelectedState.BButton();
+                Instance.currentSelectedState.BButton();
             }
         }
     }
@@ -179,24 +187,24 @@ public class StateManager : MonoBehaviour
     {
         if (GameManager.Instance.Interactable)
         {
-            if (activeState == ActionType.ActionOption.None)
+            if (Instance.activeState == ActionType.ActionOption.None)
                 throw new System.NotImplementedException();
             else
-                currentSelectedState.CButton();
+                Instance.currentSelectedState.CButton();
         }
     }
 
     public void SetDefaultActiveState()
     {
-        activeState = ActionType.ActionOption.None;
+        Instance.activeState = ActionType.ActionOption.None;
     }
 
     private void SetDecoPosition(GameObject gameObject)
     {
-        if (!selectedDeco.activeInHierarchy)
-            selectedDeco.SetActive(true);
+        if (!Instance.selectedDeco.activeInHierarchy)
+            Instance.selectedDeco.SetActive(true);
 
-        selectedDeco.transform.SetParent(gameObject.transform);
-        selectedDeco.transform.position = gameObject.GetComponentInChildren<RectTransform>().GetChild(0).position;
+        Instance.selectedDeco.transform.SetParent(gameObject.transform);
+        Instance.selectedDeco.transform.position = gameObject.GetComponentInChildren<RectTransform>().GetChild(0).position;
     }
 }

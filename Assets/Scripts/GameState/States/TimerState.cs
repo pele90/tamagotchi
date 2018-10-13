@@ -7,6 +7,11 @@
         ViewManager.Instance.ActivateView(TIMER_VIEW);
     }
 
+    public void Update()
+    {
+        
+    }
+
     public void AButton()
     {
         throw new System.NotImplementedException();
@@ -18,11 +23,6 @@
     }
 
     public void CButton()
-    {
-        throw new System.NotImplementedException();
-    }
-
-   public void UpdateState()
     {
         throw new System.NotImplementedException();
     }

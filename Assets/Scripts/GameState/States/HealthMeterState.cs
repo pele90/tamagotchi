@@ -20,7 +20,7 @@ public class HealthMeterState : IGameState
         ViewManager.Instance.ActivateView(HEALTHMETER_VIEW);
     }
 
-    public void UpdateState()
+    public void Update()
     {
         Debug.Log("Updating HealthMeter State...");
     }

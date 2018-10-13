@@ -18,7 +18,7 @@ public class DuckState : IGameState
         ViewManager.Instance.ActivateView(DUCK_VIEW);
     }
 
-    public void UpdateState()
+    public void Update()
     {
         Debug.Log("Updating Duck State...");
     }

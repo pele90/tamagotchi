@@ -24,7 +24,7 @@ public class FeedState : IGameState
         ViewManager.Instance.ActivateView(FEED_VIEW);
     }
 
-    public void UpdateState()
+    public void Update()
     {
         Debug.Log("Updating Feed State...");
     }

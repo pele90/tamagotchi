@@ -44,6 +44,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        StateManager.Instance.UpdateState();
+        StateManager.Instance.Update();
     }
 }
