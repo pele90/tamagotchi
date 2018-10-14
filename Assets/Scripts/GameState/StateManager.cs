@@ -60,7 +60,7 @@ public class StateManager : MonoBehaviour
         Instance.currentSelectedState = new FeedState();
         Instance.currentActionObject = GameObject.FindGameObjectWithTag("Feed");
         Instance.selectedDeco = GameObject.FindGameObjectWithTag("SelectDeco");
-        SetDecoPosition(currentActionObject);
+        SetDecoPosition(Instance.currentActionObject);
     }
 
     public void Update()
