@@ -4,9 +4,11 @@ public class DuckState : IGameState
 {
     private const string DUCK_VIEW = "duck_view";
 
-    public void AButton(){}
+    public GameObject poopContainer;
 
-    public void BButton(){}
+    public void AButton() { }
+
+    public void BButton() { }
 
     public void CButton()
     {
@@ -16,10 +18,22 @@ public class DuckState : IGameState
     public void Init()
     {
         ViewManager.Instance.ActivateView(DUCK_VIEW);
+        poopContainer = GameObject.FindGameObjectWithTag("PoopContainer");
     }
 
     public void Update()
     {
-        Debug.Log("Updating Duck State...");
+        int childCount = poopContainer.transform.childCount;
+
+        if(childCount != 0)
+        {
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform childTranform = poopContainer.transform.GetChild(i);
+                Object.Destroy(childTranform.gameObject, i * 2);
+            }
+        }
+
+        ViewManager.Instance.DeactivateView(DUCK_VIEW);
     }
 }

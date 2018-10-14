@@ -10,8 +10,6 @@ public class FeedState : IGameState
 
     public void Init()
     {
-        Debug.Log("Initializing Feed State...");
-
         var view = ViewManager.Instance.GetView(FEED_VIEW);
 
         CurrentFeedOption = ActionType.FeedOption.Meal;
@@ -26,7 +24,6 @@ public class FeedState : IGameState
 
     public void Update()
     {
-        Debug.Log("Updating Feed State...");
     }
 
     public void AButton()

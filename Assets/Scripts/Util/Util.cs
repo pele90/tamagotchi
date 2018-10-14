@@ -11,8 +11,7 @@ public class Util
 
     public static int GetRandomNumberBeetween(int min, int max)
     {
-        float v = Time.deltaTime * 1000.0f;
-        Random.InitState((int)v);
+        Random.InitState((int)System.DateTime.Now.Ticks);
         return Random.Range(min, max);
     }
 

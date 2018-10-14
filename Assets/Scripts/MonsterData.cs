@@ -10,6 +10,28 @@ public class MonsterData : MonoBehaviour
     public int hunger;
     public int happiness;
 
+    #region PRIVATE PROPERTIES
+
+    [SerializeField]
+    private float poopInterval;
+
+    [SerializeField]
+    private float timeWithPoop;
+
+    [SerializeField]
+    private int poopQueueAmount;
+
+    [SerializeField]
+    private int sicknessIndex;
+
+    [SerializeField]
+    private float sicknessThreshold;
+
+    [SerializeField]
+    private float sicknessDeathTreshold;
+
+    #endregion
+
     public MonsterData()
     {
         age = 0;
@@ -92,6 +114,29 @@ public class MonsterData : MonoBehaviour
         happiness -= 1;
         if (happiness < 0)
             happiness = 0;
+    }
+
+    public float GetPoopInterval()
+    {
+        return poopInterval;
+    }
+
+    public int GetPoopQueueAmount()
+    {
+        return poopQueueAmount;
+    }
+
+    public void AddToPoopQueue()
+    {
+        poopQueueAmount++;
+    }
+
+    public void ReducePoopQueue()
+    {
+        if(--poopQueueAmount < 0)
+        {
+            poopQueueAmount = 0;
+        }
     }
 
     #endregion
