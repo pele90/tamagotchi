@@ -12,8 +12,7 @@ public class ActionType
         Medicine,
         Duck,
         HealthMeter,
-        Discipline,
-        Attention
+        Discipline
     }
 
     public enum FeedOption
@@ -31,6 +30,5 @@ public class ActionType
         { 4, ActionOption.Duck },
         { 5, ActionOption.HealthMeter },
         { 6, ActionOption.Discipline },
-        { 7, ActionOption.Attention },
     };
 }

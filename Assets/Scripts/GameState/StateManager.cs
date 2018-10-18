@@ -134,11 +134,6 @@ public class StateManager : MonoBehaviour
                     Instance.currentActionObject = GameObject.FindGameObjectWithTag("Discipline");
                     Instance.currentSelectedState = new DisciplineState();
                     break;
-
-                case ActionType.ActionOption.Attention:
-                    Instance.currentActionObject = GameObject.FindGameObjectWithTag("Attention");
-                    Instance.currentSelectedState = new AttentionState();
-                    break;
             }
 
             // set selected action marker on currently selected state

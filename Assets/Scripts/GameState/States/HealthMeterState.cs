@@ -6,22 +6,54 @@ public class HealthMeterState : IGameState
 {
     private const string HEALTHMETER_VIEW = "healthmeter_view";
 
-    public void AButton() { }
+    public GameObject firstPanel;
+    public GameObject secondPanel;
 
-    public void BButton() { }
+    public void Init()
+    {
+        var view = ViewManager.Instance.GetView(HEALTHMETER_VIEW);
+
+        firstPanel = view.transform.GetChild(0).gameObject;
+        firstPanel.SetActive(true);
+
+        secondPanel = view.transform.GetChild(1).gameObject;
+        secondPanel.SetActive(false);
+
+        ViewManager.Instance.ActivateView(HEALTHMETER_VIEW);
+    }
+
+    public void Update()
+    {
+       
+    }
+
+    public void AButton()
+    {
+        TogglePanels();
+    }
+
+    public void BButton()
+    {
+
+    }
 
     public void CButton()
     {
         ViewManager.Instance.DeactivateView(HEALTHMETER_VIEW);
     }
 
-    public void Init()
+    private void TogglePanels()
     {
-        ViewManager.Instance.ActivateView(HEALTHMETER_VIEW);
+        if(firstPanel.activeInHierarchy)
+        {
+            firstPanel.SetActive(false);
+            secondPanel.SetActive(true);
+        }
+        else if (secondPanel.activeInHierarchy)
+        {
+            secondPanel.SetActive(false);
+            firstPanel.SetActive(true);
+        }
     }
 
-    public void Update()
-    {
-        Debug.Log("Updating HealthMeter State...");
-    }
 }
