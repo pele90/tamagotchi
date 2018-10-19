@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -32,6 +33,9 @@ public class GameManager : MonoBehaviour
 
     public bool Interactable { get; set; }
 
+    public DateTime CurrentSystemTime { get; set; }
+    public GameObject currentTime;
+
     #endregion
 
     // Use this for initialization
@@ -45,5 +49,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         StateManager.Instance.Update();
+        CurrentSystemTime = DateTime.Now;
+        (currentTime.GetComponent<UnityEngine.UI.Text>()).text = CurrentSystemTime.ToString("HH:mm:ss", System.Globalization.CultureInfo.CreateSpecificCulture("hr-HR"));
     }
 }
