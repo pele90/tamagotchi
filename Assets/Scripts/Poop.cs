@@ -4,8 +4,9 @@ public class Poop : MonoBehaviour
 {
     public GameObject poop;
     public GameObject poopContainer;
+    public float poopInterval;
+    public int xFrom, xTo;
 
-    private float poopInterval;
     private float poopTimer;
 
     // Use this for initialization
@@ -23,9 +24,8 @@ public class Poop : MonoBehaviour
             if (poopTimer > poopInterval)
             {
                 // Instantiate poop on random location
-                float x = Util.GetRandomNumberBeetween(-3, 3);
-                float z = Util.GetRandomNumberBeetween(-2, 8);
-                var poopObject = Instantiate(poop, new Vector3(x, 0.25f, z), transform.rotation);
+                float x = Util.GetRandomNumberBeetween(xFrom, xTo);
+                var poopObject = Instantiate(poop, new Vector3(x, 1.0f, 0), transform.rotation);
                 poopObject.transform.parent = poopContainer.transform;
 
                 GameManager.Instance.monsterData.ReducePoopQueue();
