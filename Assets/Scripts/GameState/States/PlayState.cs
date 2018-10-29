@@ -42,13 +42,13 @@ public class PlayState : IGameState
             {
                 // play happy animation
                 // add happiness
-                GameManager.Instance.monsterData.AddHappiness();
+                GameManager.Instance.monsterController.monsterData.AddHappiness();
             }
             else
             {
                 // play sad animation
                 // remove happiness
-                GameManager.Instance.monsterData.ReduceHappiness();
+                GameManager.Instance.monsterController.monsterData.ReduceHappiness();
             }
 
             GameManager.Instance.Interactable = true;

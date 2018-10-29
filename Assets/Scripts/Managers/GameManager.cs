@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour
 {
     #region Properties
 
-    public MonsterData monsterData;
+    public MonsterController monsterController;
 
     private static GameManager _gameManager;
 
@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
 
     public DateTime CurrentSystemTime { get; set; }
     public GameObject currentTime;
+    public UnityEngine.UI.Text SicknessText;
 
     #endregion
 
@@ -43,6 +44,8 @@ public class GameManager : MonoBehaviour
     {
         StateManager.Instance.Init();
         Interactable = true;
+
+        SicknessText.gameObject.SetActive(false);
     }
 
     // Update is called once per frame

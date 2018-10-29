@@ -6,7 +6,11 @@ public class MedicineState : IGameState
 
     public void AButton() { }
 
-    public void BButton() { }
+    public void BButton()
+    {
+        GameManager.Instance.monsterController.ReduceSicknessIndex(0.5);
+        ViewManager.Instance.DeactivateView(MEDICINE_VIEW);
+    }
 
     public void CButton()
     {
@@ -20,6 +24,6 @@ public class MedicineState : IGameState
 
     public void Update()
     {
-        Debug.Log("Updating Medicine State...");
+        Debug.Log("Giving monster a medicine. Please wait...");
     }
 }

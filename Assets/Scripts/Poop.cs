@@ -13,13 +13,13 @@ public class Poop : MonoBehaviour
     void Start()
     {
         poopTimer = 0;
-        poopInterval = GameManager.Instance.monsterData.GetPoopInterval();
+        poopInterval = GameManager.Instance.monsterController.GetPoopInterval();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.Instance.monsterData.GetPoopQueueAmount() != 0)
+        if(GameManager.Instance.monsterController.GetPoopQueueAmount() != 0)
         {
             if (poopTimer > poopInterval)
             {
@@ -28,7 +28,7 @@ public class Poop : MonoBehaviour
                 var poopObject = Instantiate(poop, new Vector3(x, 1.0f, 0), transform.rotation);
                 poopObject.transform.parent = poopContainer.transform;
 
-                GameManager.Instance.monsterData.ReducePoopQueue();
+                GameManager.Instance.monsterController.ReducePoopQueue();
                 poopTimer = 0;
             }
             else

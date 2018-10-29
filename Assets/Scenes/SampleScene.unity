@@ -437,7 +437,7 @@ RectTransform:
   - {fileID: 1711622408}
   - {fileID: 925217854}
   m_Father: {fileID: 1528025009}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -577,7 +577,7 @@ RectTransform:
   - {fileID: 266295318}
   - {fileID: 888997482}
   m_Father: {fileID: 1528025009}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3648,6 +3648,8 @@ GameObject:
   - component: {fileID: 1066123034}
   - component: {fileID: 1066123033}
   - component: {fileID: 1066123035}
+  - component: {fileID: 1066123036}
+  - component: {fileID: 1066123037}
   m_Layer: 0
   m_Name: Daki
   m_TagString: Untagged
@@ -3710,8 +3712,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.26, y: 1.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1700408139}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3731,6 +3732,42 @@ MonoBehaviour:
   poopInterval: 2
   xFrom: -7
   xTo: 7
+--- !u!114 &1066123036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1066123032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0f2e4955984f1649b5b5a0a6c6711f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PoopContainer: {fileID: 579985437}
+  monsterData: {fileID: 0}
+  poopInterval: 5
+  addToSicknessIndexInterval: 2
+  timeWithPoop: 0
+  poopQueueAmount: 0
+  sicknessThreshold: 0
+  sicknessDeathTreshold: 0
+  sicknessIndex: 0
+--- !u!114 &1066123037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1066123032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a678d2bfc08c22c4c9ec27458e2cd588, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  age: 0
+  weight: 0
+  discipline: 0
+  hunger: 0
+  happiness: 0
 --- !u!1001 &1074305290
 Prefab:
   m_ObjectHideFlags: 0
@@ -4620,6 +4657,95 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1273823336}
   m_CullTransparentMesh: 0
+--- !u!1 &1290358416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1290358417}
+  - component: {fileID: 1290358419}
+  - component: {fileID: 1290358418}
+  - component: {fileID: 1290358420}
+  m_Layer: 5
+  m_Name: Sickness
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1290358417
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1290358416}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1528025009}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 198}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1290358418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1290358416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 48
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 48
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: The monster is sick!
+--- !u!222 &1290358419
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1290358416}
+  m_CullTransparentMesh: 0
+--- !u!114 &1290358420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1290358416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
 --- !u!1 &1299843369
 GameObject:
   m_ObjectHideFlags: 0
@@ -5493,7 +5619,7 @@ RectTransform:
   - {fileID: 1969559879}
   - {fileID: 303642220}
   m_Father: {fileID: 1528025009}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5563,8 +5689,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b282bb7e383b8a74f8c4f02432cb1e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterData: {fileID: 1700408140}
+  monsterController: {fileID: 1066123036}
   currentTime: {fileID: 1576550017}
+  SicknessText: {fileID: 1290358418}
 --- !u!1 &1528025005
 GameObject:
   m_ObjectHideFlags: 0
@@ -5651,6 +5778,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1576550018}
+  - {fileID: 1290358417}
   - {fileID: 2065919202}
   - {fileID: 1583743528}
   - {fileID: 1522287899}
@@ -6069,7 +6197,7 @@ RectTransform:
   - {fileID: 1299843370}
   - {fileID: 1145004174}
   m_Father: {fileID: 1528025009}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -6277,57 +6405,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1675182721}
   m_CullTransparentMesh: 0
---- !u!1 &1700408138
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1700408139}
-  - component: {fileID: 1700408140}
-  m_Layer: 0
-  m_Name: MonsterData
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1700408139
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1700408138}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.48880392, y: -2.9248824, z: -0.15039062}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1066123034}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1700408140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1700408138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a678d2bfc08c22c4c9ec27458e2cd588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  age: 0
-  weight: 0
-  discipline: 0
-  hunger: 0
-  happiness: 0
-  poopInterval: 5
-  timeWithPoop: 0
-  poopQueueAmount: 0
-  sicknessIndex: 0
-  sicknessThreshold: 2
-  sicknessDeathTreshold: 3
 --- !u!1 &1705168820
 GameObject:
   m_ObjectHideFlags: 0
@@ -7771,7 +7848,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1528025009}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

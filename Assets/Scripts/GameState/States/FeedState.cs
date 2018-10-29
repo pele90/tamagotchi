@@ -40,14 +40,15 @@ public class FeedState : IGameState
 
         if (CurrentFeedOption == ActionType.FeedOption.Meal)
         {
-            GameManager.Instance.monsterData.AddHunger();
-            GameManager.Instance.monsterData.AddWeight(0.1);
+            GameManager.Instance.monsterController.monsterData.AddHunger();
+            GameManager.Instance.monsterController.monsterData.AddWeight(0.1);
         }
         else
         {
-            GameManager.Instance.monsterData.AddHunger();
-            GameManager.Instance.monsterData.AddHappiness();
-            GameManager.Instance.monsterData.AddWeight(0.20);
+            GameManager.Instance.monsterController.monsterData.AddHunger();
+            GameManager.Instance.monsterController.monsterData.AddHappiness();
+            GameManager.Instance.monsterController.monsterData.AddWeight(0.20);
+            GameManager.Instance.monsterController.AddSicknessIndex(0.1);
         }
     }
 
@@ -61,7 +62,6 @@ public class FeedState : IGameState
         if (CurrentFeedOption == ActionType.FeedOption.Meal)
         {
             CurrentFeedOption = ActionType.FeedOption.Snack;
-            Debug.Log("User selected SNACK!");
 
             // TODO: change feed option visually
             meal.gameObject.SetActive(false);
@@ -70,7 +70,6 @@ public class FeedState : IGameState
         else
         {
             CurrentFeedOption = ActionType.FeedOption.Meal;
-            Debug.Log("User selected MEAL!");
 
             // TODO: change feed option visually
             meal.gameObject.SetActive(true);

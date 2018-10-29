@@ -10,6 +10,6 @@ public class FeedAnimation : MonoBehaviour
         transform.localPosition = new Vector3(0, 315, 0);
         ViewManager.Instance.DeactivateView("feed_view");
 
-        GameManager.Instance.monsterData.AddToPoopQueue();
+        GameManager.Instance.monsterController.AddToPoopQueue();
     }
 }

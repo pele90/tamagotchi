@@ -1,4 +1,4 @@
 ﻿public enum Events
 {
-    BallAccuired
+    MonsterSick
 }
