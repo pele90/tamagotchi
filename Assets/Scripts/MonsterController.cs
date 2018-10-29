@@ -50,6 +50,9 @@ public class MonsterController : MonoBehaviour
     [SerializeField]
     private float timeToGetSleepy;
 
+    [SerializeField]
+    private float minSleepingTime;
+
     #endregion
 
     // Use this for initialization
@@ -163,6 +166,10 @@ public class MonsterController : MonoBehaviour
             isSleeping = false;
 
             // TODO: calculate amount of sleep and if under some value add to sickness index
+            if(sleepingTime <= minSleepingTime)
+            {
+                AddSicknessIndex(0.3);
+            }
 
             sleepingTime = 0;
         }
