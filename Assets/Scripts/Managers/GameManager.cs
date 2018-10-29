@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public DateTime CurrentSystemTime { get; set; }
     public GameObject currentTime;
     public UnityEngine.UI.Text SicknessText;
+    public UnityEngine.UI.Image BulbImage;
 
     #endregion
 
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
         Interactable = true;
 
         SicknessText.gameObject.SetActive(false);
+        BulbImage.gameObject.SetActive(false);
     }
 
     // Update is called once per frame

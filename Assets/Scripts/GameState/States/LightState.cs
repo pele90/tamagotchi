@@ -33,9 +33,20 @@ public class LightState : IGameState
     public void BButton()
     {
         if (isOff)
-            ViewManager.Instance.lights.SetActive(false);
+        {
+            if(GameManager.Instance.monsterController.IsSleepy())
+            {
+                if (GameManager.Instance.monsterController.PutToSleep())
+                {
+                    GameManager.Instance.BulbImage.gameObject.SetActive(true);
+                }
+            }
+        }
         else
-            ViewManager.Instance.lights.SetActive(true);
+        {
+            GameManager.Instance.monsterController.WakeUp();
+            GameManager.Instance.BulbImage.gameObject.SetActive(false);
+        }
 
         ViewManager.Instance.DeactivateView(LIGHT_VIEW);
     }

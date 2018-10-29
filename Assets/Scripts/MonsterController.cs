@@ -34,6 +34,22 @@ public class MonsterController : MonoBehaviour
     [SerializeField]
     private double sicknessIndex;
 
+    [Header("SLEEP")]
+    [SerializeField]
+    private bool isSleepy;
+
+    [SerializeField]
+    private bool isSleeping;
+
+    [SerializeField]
+    private float sleepingTime;
+
+    [SerializeField]
+    private float awakeTime;
+
+    [SerializeField]
+    private float timeToGetSleepy;
+
     #endregion
 
     // Use this for initialization
@@ -49,6 +65,16 @@ public class MonsterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isSleeping)
+            sleepingTime += Time.deltaTime;
+        else
+        {
+            awakeTime += Time.deltaTime;
+            if (awakeTime >= timeToGetSleepy)
+                isSleepy = true;
+        }
+
+
         if(PoopContainer.transform.childCount != 0)
         {
             timeWithPoop += Time.deltaTime;
@@ -110,6 +136,36 @@ public class MonsterController : MonoBehaviour
 
         if(sicknessIndex < 1)
             GameManager.Instance.SicknessText.gameObject.SetActive(false);
+    }
+
+    public bool IsSleepy()
+    {
+        return isSleepy;
+    }
+
+    public bool PutToSleep()
+    {
+        if (!isSleeping && isSleepy)
+        {
+            isSleeping = true;
+            isSleepy = false;
+            awakeTime = 0;
+            return true;
+        }
+
+        return false;
+    }
+
+    public void WakeUp()
+    {
+        if (isSleeping)
+        {
+            isSleeping = false;
+
+            // TODO: calculate amount of sleep and if under some value add to sickness index
+
+            sleepingTime = 0;
+        }
     }
 
     bool CheckIsSick()
