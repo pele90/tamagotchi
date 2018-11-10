@@ -437,7 +437,7 @@ RectTransform:
   - {fileID: 1711622408}
   - {fileID: 925217854}
   m_Father: {fileID: 1528025009}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -577,7 +577,7 @@ RectTransform:
   - {fileID: 266295318}
   - {fileID: 888997482}
   m_Father: {fileID: 1528025009}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3752,6 +3752,12 @@ MonoBehaviour:
   sicknessThreshold: 0
   sicknessDeathTreshold: 0
   sicknessIndex: 0
+  isSleepy: 0
+  isSleeping: 0
+  sleepingTime: 0
+  awakeTime: 0
+  timeToGetSleepy: 10
+  minSleepingTime: 5
 --- !u!114 &1066123037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5619,7 +5625,7 @@ RectTransform:
   - {fileID: 1969559879}
   - {fileID: 303642220}
   m_Father: {fileID: 1528025009}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5692,6 +5698,7 @@ MonoBehaviour:
   monsterController: {fileID: 1066123036}
   currentTime: {fileID: 1576550017}
   SicknessText: {fileID: 1290358418}
+  BulbImage: {fileID: 1602290959}
 --- !u!1 &1528025005
 GameObject:
   m_ObjectHideFlags: 0
@@ -5779,6 +5786,7 @@ RectTransform:
   m_Children:
   - {fileID: 1576550018}
   - {fileID: 1290358417}
+  - {fileID: 1602290958}
   - {fileID: 2065919202}
   - {fileID: 1583743528}
   - {fileID: 1522287899}
@@ -6197,7 +6205,7 @@ RectTransform:
   - {fileID: 1299843370}
   - {fileID: 1145004174}
   m_Father: {fileID: 1528025009}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -6226,6 +6234,75 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
+--- !u!1 &1602290957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1602290958}
+  - component: {fileID: 1602290960}
+  - component: {fileID: 1602290959}
+  m_Layer: 5
+  m_Name: Bulb
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1602290958
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1602290957}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.59764, y: 0.59764, z: 0.59764}
+  m_Children: []
+  m_Father: {fileID: 1528025009}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -379.5, y: 198.3}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1602290959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1602290957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 3f3cd4bdb25e22d428fb5687a6d62951, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1602290960
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1602290957}
+  m_CullTransparentMesh: 0
 --- !u!1 &1609125060
 GameObject:
   m_ObjectHideFlags: 0
@@ -7848,7 +7925,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1528025009}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
