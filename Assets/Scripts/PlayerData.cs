@@ -45,6 +45,8 @@ public class PlayerData : MonoBehaviour
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/playerData.dat", FileMode.Open);
             data = (Data)bf.Deserialize(file);
+
+            file.Close();
         }
         else
             Debug.Log("File doesn't exists");

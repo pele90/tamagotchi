@@ -24,6 +24,6 @@ public class MedicineState : IGameState
 
     public void Update()
     {
-        Debug.Log("Giving monster a medicine. Please wait...");
+        
     }
 }

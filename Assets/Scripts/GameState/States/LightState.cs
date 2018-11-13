@@ -22,7 +22,6 @@ public class LightState : IGameState
 
     public void Update()
     {
-        Debug.Log("Updating Light State...");
     }
 
     public void AButton()
