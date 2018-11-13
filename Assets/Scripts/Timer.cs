@@ -21,7 +21,7 @@ public class Timer : MonoBehaviour
     {
         if (GameManager.Instance.GetPlayerData().GetData().IsInitialized)
         {
-            CurrentTime = GameManager.Instance.CurrentSystemTime;
+            CurrentTime = GameManager.Instance.CurrentGameTime;
         }
 
         Hours.text = CurrentTime.Hour.ToString("00");
@@ -42,6 +42,6 @@ public class Timer : MonoBehaviour
 
     public void SetTimer()
     {
-        GameManager.Instance.CurrentSystemTime = CurrentTime;
+        GameManager.Instance.CurrentGameTime = CurrentTime;
     }
 }

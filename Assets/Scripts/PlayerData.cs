@@ -6,7 +6,8 @@ using UnityEngine;
 [Serializable]
 public class Data
 {
-    public DateTime RecordedTime;
+    public DateTime RecordedRealTime;
+    public DateTime RecordedGameTime;
     public bool IsInitialized;
 }
 
@@ -17,6 +18,8 @@ public class PlayerData : MonoBehaviour
     public void Init()
     {
         data = new Data();
+        data.RecordedGameTime = DateTime.Now.Date;
+        
         Load();
     }
 

@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
     #region Properties
 
     public MonsterController monsterController;
-    public DateTime CurrentSystemTime { get; set; }
+    public DateTime CurrentGameTime { get; set; }
     public static GameManager Instance
     {
         get
@@ -60,11 +60,6 @@ public class GameManager : MonoBehaviour
         {
             LoadTime();
         }
-        else
-        {
-            //CurrentSystemTime = DateTime.Now;
-            //playerData.GetData().IsInitialized = true;
-        }
     }
 
     // Update is called once per frame
@@ -73,30 +68,22 @@ public class GameManager : MonoBehaviour
         StateManager.Instance.Update();
 
         if(playerData.GetData().IsInitialized)
-            CurrentSystemTime = CurrentSystemTime.AddSeconds(Time.deltaTime);
+            CurrentGameTime = CurrentGameTime.AddSeconds(Time.deltaTime);
 
-        (currentTime.GetComponent<UnityEngine.UI.Text>()).text = CurrentSystemTime.ToString("HH:mm:ss", System.Globalization.CultureInfo.CreateSpecificCulture("hr-HR"));
+        (currentTime.GetComponent<UnityEngine.UI.Text>()).text = CurrentGameTime.ToString("HH:mm:ss", System.Globalization.CultureInfo.CreateSpecificCulture("hr-HR"));
 
-        if (Input.GetKey(KeyCode.R))
-        {
-            RecordCurrentTime();
-        }
-
-    }
-
-    void RecordCurrentTime()
-    {
-        playerData.GetData().RecordedTime = CurrentSystemTime;
     }
 
     void LoadTime()
     {
-        CurrentSystemTime = playerData.GetData().RecordedTime;
+        TimeSpan timeDiff = DateTime.Now - playerData.GetData().RecordedRealTime;
+        CurrentGameTime = playerData.GetData().RecordedGameTime.AddSeconds(timeDiff.Seconds);
     }
 
     void OnApplicationQuit()
     {
-        playerData.GetData().RecordedTime = CurrentSystemTime;
+        playerData.GetData().RecordedGameTime = CurrentGameTime;
+        playerData.GetData().RecordedRealTime = DateTime.Now;
         playerData.Save();
     }
 }
