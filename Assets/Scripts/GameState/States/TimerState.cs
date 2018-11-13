@@ -1,29 +1,45 @@
-﻿public class TimerState : IGameState
+﻿using System;
+using UnityEngine;
+
+public class TimerState : IGameState
 {
     private const string TIMER_VIEW = "timer_view";
+    private Timer timer;
 
     public void Init()
     {
         ViewManager.Instance.ActivateView(TIMER_VIEW);
+        timer = ViewManager.Instance.GetView(TIMER_VIEW).GetComponent<Timer>();
     }
 
     public void Update()
     {
-        
+
     }
 
     public void AButton()
     {
-        throw new System.NotImplementedException();
+        if(!GameManager.Instance.GetPlayerData().GetData().IsInitialized)
+            timer.IncreaseHours();
     }
 
     public void BButton()
     {
-        ViewManager.Instance.DeactivateView(TIMER_VIEW);
+        if (!GameManager.Instance.GetPlayerData().GetData().IsInitialized)
+            timer.IncreaseMinutes();
     }
 
     public void CButton()
     {
-        throw new System.NotImplementedException();
+        if (GameManager.Instance.GetPlayerData().GetData().IsInitialized)
+        {
+            ViewManager.Instance.DeactivateView(TIMER_VIEW);
+        }
+        else
+        {
+            timer.SetTimer();
+            GameManager.Instance.GetPlayerData().GetData().IsInitialized = true;
+            ViewManager.Instance.DeactivateView(TIMER_VIEW);
+        }
     }
 }

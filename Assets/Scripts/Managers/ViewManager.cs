@@ -7,7 +7,8 @@ public class ViewManager : MonoBehaviour
 
     private static ViewManager _viewManager;
 
-    public GameObject actions;
+    public GameObject topActions;
+    public GameObject bottomActions;
     public GameObject viewGameObject;
     public GameObject lights;
     public List<GameObject> availableViews;
@@ -62,7 +63,8 @@ public class ViewManager : MonoBehaviour
         }
 
         // Hide action icons
-        actions.SetActive(false);
+        topActions.SetActive(false);
+        bottomActions.SetActive(false);
 
         // SetActive(true) on the returned view
         view.SetActive(true);
@@ -83,7 +85,8 @@ public class ViewManager : MonoBehaviour
         view.SetActive(false);
 
         // Show action icons
-        actions.SetActive(true);
+        topActions.SetActive(true);
+        bottomActions.SetActive(true);
         StateManager.Instance.SetDefaultActiveState();
     }
 

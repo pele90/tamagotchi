@@ -55,12 +55,28 @@ public class StateManager : MonoBehaviour
 
     public void Init()
     {
+        bool isInitialized = GameManager.Instance.GetPlayerData().GetData().IsInitialized;
+
         Instance.StateCounter = 0;
-        Instance.activeState = ActionType.ActionOption.None;
-        Instance.currentSelectedState = new FeedState();
-        Instance.currentActionObject = GameObject.FindGameObjectWithTag("Feed");
         Instance.selectedDeco = GameObject.FindGameObjectWithTag("SelectDeco");
-        SetDecoPosition(Instance.currentActionObject);
+
+        if (isInitialized)
+        {
+           
+            Instance.activeState = ActionType.ActionOption.None;
+            Instance.currentSelectedState = new FeedState();
+            Instance.currentActionObject = GameObject.FindGameObjectWithTag("Feed");
+            Instance.selectedDeco = GameObject.FindGameObjectWithTag("SelectDeco");
+            SetDecoPosition(Instance.currentActionObject);
+        }
+        else
+        {
+            Instance.activeState = ActionType.ActionOption.Timer;
+            Instance.currentSelectedState = new TimerState();
+            Instance.currentActionObject = null;
+            Instance.selectedDeco.SetActive(false);
+            Instance.currentSelectedState.Init();
+        }
     }
 
     public void Update()
@@ -75,10 +91,9 @@ public class StateManager : MonoBehaviour
 
         else
         {
-            if (!idle && timeSinceLastInput > timeToIdle)
+            if (!idle && timeSinceLastInput > timeToIdle && GameManager.Instance.GetPlayerData().GetData().IsInitialized)
             {
                 Instance.idle = true;
-                //Debug.Log("Going into IDLE state...");
                 Instance.selectedDeco.SetActive(false);
                 Instance.currentActionObject = null;
                 Instance.currentSelectedState = new TimerState();
