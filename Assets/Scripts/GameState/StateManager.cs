@@ -12,6 +12,7 @@ public class StateManager : MonoBehaviour
     private int _lastStateCounter;
     private float timeSinceLastInput = 0;
     private bool idle;
+    private bool selectLastOption;
 
     public float timeToIdle;
 
@@ -88,7 +89,6 @@ public class StateManager : MonoBehaviour
             // update current state
             Instance.currentSelectedState.Update();
         }
-
         else
         {
             if (!idle && timeSinceLastInput > timeToIdle && GameManager.Instance.GetPlayerData().GetData().IsInitialized)
@@ -97,21 +97,13 @@ public class StateManager : MonoBehaviour
                 Instance.selectedDeco.SetActive(false);
                 Instance.currentActionObject = null;
                 Instance.currentSelectedState = new TimerState();
-                //activeState = ActionType.ActionOption.Timer;
             }
         }
 
-        if (Instance._stateCounter != Instance._lastStateCounter)
+        if (Instance._stateCounter != Instance._lastStateCounter || Instance.selectLastOption)
         {
             ActionType.ActionOption option;
             ActionType.ActionOptions.TryGetValue(Instance.StateCounter, out option);
-
-            //if(activeState == ActionType.ActionOption.Timer)
-            //{
-            //    option = lastSelectedOption;
-            //}
-            //else
-            //    lastSelectedOption = option;
 
             switch (option)
             {
@@ -159,6 +151,7 @@ public class StateManager : MonoBehaviour
 
             Instance.timeSinceLastInput = 0;
             Instance.idle = false;
+            Instance.selectLastOption = false;
         }
 
         Instance.timeSinceLastInput += Time.deltaTime;
@@ -168,8 +161,10 @@ public class StateManager : MonoBehaviour
     {
         if (GameManager.Instance.Interactable)
         {
-            if (Instance.activeState == ActionType.ActionOption.None)
+            if (Instance.activeState == ActionType.ActionOption.None && !Instance.idle)
                 Instance.StateCounter++;
+            else if (Instance.activeState == ActionType.ActionOption.None && Instance.idle)
+                Instance.selectLastOption = true;
             else
                 Instance.currentSelectedState.AButton();
         }
