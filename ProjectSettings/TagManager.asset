@@ -14,6 +14,9 @@ TagManager:
   - Play
   - SelectDeco
   - PoopContainer
+  - HungerHearts
+  - HappinessHearts
+  - DisciplineGauge
   layers:
   - Default
   - TransparentFX

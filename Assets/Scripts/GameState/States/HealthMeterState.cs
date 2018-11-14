@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HealthMeterState : IGameState
 {
     private const string HEALTHMETER_VIEW = "healthmeter_view";
 
-    public GameObject firstPanel;
-    public GameObject secondPanel;
+    private GameObject firstPanel;
+    private GameObject secondPanel;
 
     public void Init()
     {

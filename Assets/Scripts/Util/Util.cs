@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Util
 {
@@ -13,6 +14,20 @@ public class Util
     {
         Random.InitState((int)System.DateTime.Now.Ticks);
         return Random.Range(min, max);
+    }
+
+    public static void HideObject(Image image)
+    {
+        Color hiddenColor = image.color;
+        hiddenColor.a = 0;
+        image.color = hiddenColor;
+    }
+
+    public static void ShowObject(Image image)
+    {
+        Color shownColor = image.color;
+        shownColor.a = 1;
+        image.color = shownColor;
     }
 
     private class Nested
