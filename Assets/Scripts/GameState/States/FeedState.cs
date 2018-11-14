@@ -7,9 +7,12 @@ public class FeedState : IGameState
     private const string FEED_VIEW = "feed_view";
     private Transform meal;
     private Transform snack;
+    private FeedData feedData;
 
     public void Init()
     {
+        feedData = ViewManager.Instance.GetView(FEED_VIEW).GetComponent<FeedData>();
+
         var view = ViewManager.Instance.GetView(FEED_VIEW);
 
         CurrentFeedOption = ActionType.FeedOption.Meal;
@@ -41,14 +44,14 @@ public class FeedState : IGameState
         if (CurrentFeedOption == ActionType.FeedOption.Meal)
         {
             GameManager.Instance.monsterController.monsterData.AddHunger();
-            GameManager.Instance.monsterController.monsterData.AddWeight(0.1);
+            GameManager.Instance.monsterController.monsterData.AddWeight(feedData.mealWeightAmount);
         }
         else
         {
             GameManager.Instance.monsterController.monsterData.AddHunger();
             GameManager.Instance.monsterController.monsterData.AddHappiness();
-            GameManager.Instance.monsterController.monsterData.AddWeight(0.20);
-            GameManager.Instance.monsterController.AddSicknessIndex(0.1);
+            GameManager.Instance.monsterController.monsterData.AddWeight(feedData.snackWeightAmount);
+            GameManager.Instance.monsterController.AddSicknessIndex(feedData.snackSicknessIndexAmount);
         }
     }
 
