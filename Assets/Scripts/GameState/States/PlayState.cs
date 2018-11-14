@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.UI;
 
 public class PlayState : IGameState
 {
     private const string PLAY_VIEW = "play_view";
     private const int NUMBER_OF_GUESSES = 5;
-
     private GameObject leftChoice;
     private GameObject rightChoice;
+    private Text playResultText;
     private int guessesLeft;
     private int successfullGuesses;
 
@@ -22,6 +22,9 @@ public class PlayState : IGameState
         leftChoice.SetActive(false);
         rightChoice = view.transform.GetChild(1).gameObject;
         rightChoice.SetActive(false);
+
+        playResultText = view.transform.GetChild(2).GetComponent<Text>();
+        playResultText.gameObject.SetActive(false);
     }
 
     public void Update()
@@ -40,12 +43,16 @@ public class PlayState : IGameState
             // show qutie animation based on result
             if(success)
             {
+                
+                playResultText.gameObject.SetActive(true);
                 // play happy animation
                 // add happiness
                 GameManager.Instance.monsterController.monsterData.AddHappiness();
             }
             else
             {
+                playResultText.text = "You lost!";
+                playResultText.gameObject.SetActive(true);
                 // play sad animation
                 // remove happiness
                 GameManager.Instance.monsterController.monsterData.ReduceHappiness();
@@ -66,8 +73,17 @@ public class PlayState : IGameState
         // if player guessed that the quties will turn LEFT (from player perspective)
         if (GuessSide(0))
         {
+            playResultText.text = "Correct!";
+            playResultText.gameObject.SetActive(true);
             successfullGuesses++;
         }
+        else
+        {
+            playResultText.text = "Wrong!";
+            playResultText.gameObject.SetActive(true);
+        }
+
+
         GameManager.Instance.Interactable = false;
     }
 
@@ -79,7 +95,14 @@ public class PlayState : IGameState
         // if player guessed that the quties will turn RIGHT (from player perspective)
         if(GuessSide(1))
         {
+            playResultText.text = "Correct!";
+            playResultText.gameObject.SetActive(true);
             successfullGuesses++;
+        }
+        else
+        {
+            playResultText.text = "Wrong!";
+            playResultText.gameObject.SetActive(true);
         }
 
         guessesLeft--;
@@ -96,6 +119,7 @@ public class PlayState : IGameState
 
         // randomSide = qutie random guess
         int randomSide = Util.GetRandomNumberBeetween(0, 1);
+        Debug.Log(randomSide);
 
         return side == randomSide;
     }

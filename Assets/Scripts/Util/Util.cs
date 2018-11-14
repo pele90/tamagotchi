@@ -13,7 +13,7 @@ public class Util
     public static int GetRandomNumberBeetween(int min, int max)
     {
         Random.InitState((int)System.DateTime.Now.Ticks);
-        return Random.Range(min, max);
+        return Random.Range(min, max+1); // +1 because max is exclusive
     }
 
     public static void HideObject(Image image)
