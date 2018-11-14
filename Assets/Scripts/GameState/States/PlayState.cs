@@ -7,6 +7,7 @@ public class PlayState : IGameState
     private const int NUMBER_OF_GUESSES = 5;
     private GameObject leftChoice;
     private GameObject rightChoice;
+    private Text choiceResultText;
     private Text playResultText;
     private int guessesLeft;
     private int successfullGuesses;
@@ -23,7 +24,9 @@ public class PlayState : IGameState
         rightChoice = view.transform.GetChild(1).gameObject;
         rightChoice.SetActive(false);
 
-        playResultText = view.transform.GetChild(2).GetComponent<Text>();
+        choiceResultText = view.transform.GetChild(2).GetComponent<Text>();
+        choiceResultText.gameObject.SetActive(false);
+        playResultText = view.transform.GetChild(3).GetComponent<Text>();
         playResultText.gameObject.SetActive(false);
     }
 
@@ -43,25 +46,24 @@ public class PlayState : IGameState
             // show qutie animation based on result
             if(success)
             {
-                
-                playResultText.gameObject.SetActive(true);
                 // play happy animation
                 // add happiness
                 GameManager.Instance.monsterController.monsterData.AddHappiness();
+
+                playResultText.text = "Nice! You won.";
+                // This will run animation on gameObject active and deactivate current view thus return to main area
+                playResultText.gameObject.SetActive(true);
             }
             else
             {
-                playResultText.text = "You lost!";
-                playResultText.gameObject.SetActive(true);
                 // play sad animation
                 // remove happiness
                 GameManager.Instance.monsterController.monsterData.ReduceHappiness();
+
+                playResultText.text = "Sorry! You lost.";
+                // This will run animation on gameObject active and deactivate current view thus return to main area
+                playResultText.gameObject.SetActive(true);
             }
-
-            GameManager.Instance.Interactable = true;
-
-            // return to action selection screen
-            ViewManager.Instance.DeactivateView(PLAY_VIEW);
         }
     }
 
@@ -73,14 +75,14 @@ public class PlayState : IGameState
         // if player guessed that the quties will turn LEFT (from player perspective)
         if (GuessSide(0))
         {
-            playResultText.text = "Correct!";
-            playResultText.gameObject.SetActive(true);
+            choiceResultText.text = "Correct!";
+            choiceResultText.gameObject.SetActive(true);
             successfullGuesses++;
         }
         else
         {
-            playResultText.text = "Wrong!";
-            playResultText.gameObject.SetActive(true);
+            choiceResultText.text = "Wrong!";
+            choiceResultText.gameObject.SetActive(true);
         }
 
 
@@ -95,14 +97,14 @@ public class PlayState : IGameState
         // if player guessed that the quties will turn RIGHT (from player perspective)
         if(GuessSide(1))
         {
-            playResultText.text = "Correct!";
-            playResultText.gameObject.SetActive(true);
+            choiceResultText.text = "Correct!";
+            choiceResultText.gameObject.SetActive(true);
             successfullGuesses++;
         }
         else
         {
-            playResultText.text = "Wrong!";
-            playResultText.gameObject.SetActive(true);
+            choiceResultText.text = "Wrong!";
+            choiceResultText.gameObject.SetActive(true);
         }
 
         guessesLeft--;
@@ -119,7 +121,6 @@ public class PlayState : IGameState
 
         // randomSide = qutie random guess
         int randomSide = Util.GetRandomNumberBeetween(0, 1);
-        Debug.Log(randomSide);
 
         return side == randomSide;
     }
