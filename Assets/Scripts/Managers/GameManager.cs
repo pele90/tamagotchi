@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     private PlayerData playerData;
     private static GameManager _gameManager;
 
-    public GameObject currentTime;
+    public GameObject currentTimeText;
     public UnityEngine.UI.Text SicknessText;
     public UnityEngine.UI.Image BulbImage;
 
@@ -70,14 +70,15 @@ public class GameManager : MonoBehaviour
         if(playerData.GetData().IsInitialized)
             CurrentGameTime = CurrentGameTime.AddSeconds(Time.deltaTime);
 
-        (currentTime.GetComponent<UnityEngine.UI.Text>()).text = CurrentGameTime.ToString("HH:mm:ss", System.Globalization.CultureInfo.CreateSpecificCulture("hr-HR"));
+        (currentTimeText.GetComponent<UnityEngine.UI.Text>()).text = CurrentGameTime.ToString("HH:mm:ss", System.Globalization.CultureInfo.CreateSpecificCulture("hr-HR"));
 
     }
 
     void LoadTime()
     {
         TimeSpan timeDiff = DateTime.Now - playerData.GetData().RecordedRealTime;
-        CurrentGameTime = playerData.GetData().RecordedGameTime.AddSeconds(timeDiff.Seconds);
+        CurrentGameTime = playerData.GetData().RecordedGameTime.Add(timeDiff);
+        monsterController.SetBirthDateTime(playerData.GetData().birthDateTime);
     }
 
     void OnApplicationQuit()

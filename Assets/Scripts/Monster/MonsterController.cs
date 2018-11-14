@@ -1,8 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class MonsterController : MonoBehaviour
 {
     public GameObject PoopContainer;
+
+    private DateTime birthDateTime;
 
     [HideInInspector]
     public MonsterData monsterData;
@@ -17,6 +20,9 @@ public class MonsterController : MonoBehaviour
 
     [SerializeField]
     private int addToSicknessIndexInterval;
+
+    [SerializeField]
+    private double poopSicknessIndexAmount;
 
     [SerializeField]
     private float timeWithPoop;
@@ -53,16 +59,17 @@ public class MonsterController : MonoBehaviour
     [SerializeField]
     private float minSleepingTime;
 
+    [SerializeField]
+    private double insufficientSleepSickness;
+
     #endregion
 
     // Use this for initialization
     void Start()
     {
         monsterData = GetComponent<MonsterData>();
-        sicknessThreshold = 1.0;
-        sicknessDeathTreshold = 2.0;
 
-        // set fields based on personality
+        // TODO: set fields based on personality
     }
 
     // Update is called once per frame
@@ -73,8 +80,9 @@ public class MonsterController : MonoBehaviour
         else
         {
             awakeTime += Time.deltaTime;
-            if (awakeTime >= timeToGetSleepy)
-                isSleepy = true;
+
+            // Sets the isSleepy flag if the time is for sleep
+            CheckIfTimeForSleep();
         }
 
 
@@ -84,7 +92,7 @@ public class MonsterController : MonoBehaviour
 
             if(timeWithPoop >= addToSicknessIndexInterval)
             {
-                GameManager.Instance.monsterController.AddSicknessIndex(0.1);
+                GameManager.Instance.monsterController.AddSicknessIndex(poopSicknessIndexAmount);
                 timeWithPoop = 0;
             }
         }
@@ -104,6 +112,11 @@ public class MonsterController : MonoBehaviour
         }
     }
     
+    public void SetBirthDateTime(DateTime datetime)
+    {
+        birthDateTime = datetime;
+    }
+
     public float GetPoopInterval()
     {
         return poopInterval;
@@ -168,7 +181,7 @@ public class MonsterController : MonoBehaviour
             // TODO: calculate amount of sleep and if under some value add to sickness index
             if(sleepingTime <= minSleepingTime)
             {
-                AddSicknessIndex(0.3);
+                AddSicknessIndex(insufficientSleepSickness);
             }
 
             sleepingTime = 0;
@@ -189,5 +202,18 @@ public class MonsterController : MonoBehaviour
             return true;
 
         return false;
+    }
+    
+    void CheckIfTimeForSleep()
+    {
+        //var birthTime = birthDateTime.ToShortTimeString();
+        //var currentTime = GameManager.Instance.CurrentGameTime.ToShortTimeString();
+
+        //TODO: kada se monsteru zapravo spava??
+
+        if (awakeTime >= timeToGetSleepy)
+            isSleepy = true;
+
+
     }
 }

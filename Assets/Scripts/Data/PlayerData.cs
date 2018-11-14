@@ -9,6 +9,7 @@ public class Data
     public DateTime RecordedRealTime;
     public DateTime RecordedGameTime;
     public bool IsInitialized;
+    public DateTime birthDateTime;
 }
 
 public class PlayerData : MonoBehaviour

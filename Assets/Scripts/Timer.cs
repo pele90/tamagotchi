@@ -43,5 +43,6 @@ public class Timer : MonoBehaviour
     public void SetTimer()
     {
         GameManager.Instance.CurrentGameTime = CurrentTime;
+        GameManager.Instance.GetPlayerData().GetData().birthDateTime = CurrentTime;
     }
 }
