@@ -8,6 +8,9 @@ public class FeedState : IGameState
     private Transform meal;
     private Transform snack;
     private FeedData feedData;
+    private MonsterController monsterController;
+    private bool isDone;
+    
 
     public void Init()
     {
@@ -23,10 +26,25 @@ public class FeedState : IGameState
         snack.gameObject.SetActive(false);
 
         ViewManager.Instance.ActivateView(FEED_VIEW);
+
+        monsterController = GameManager.Instance.monsterController;
+        isDone = false;
     }
 
     public void Update()
     {
+        // this is to prevent update from going multiple time if tough the action is done
+        if(isDone)
+        {
+            return;
+        }
+        // TODO: check mood (number of happiness hearts and is sick) + personality
+        if (monsterController.monsterData.hunger == monsterController.monsterData.MAX_HUNGER || monsterController.IsSick())
+        {
+            // TODO: play monster refusing animation
+            Debug.Log("Don't want to eat.");
+            ViewManager.Instance.DeactivateView(FEED_VIEW);
+        }
     }
 
     public void AButton()
@@ -53,6 +71,8 @@ public class FeedState : IGameState
             GameManager.Instance.monsterController.monsterData.AddWeight(feedData.snackWeightAmount);
             GameManager.Instance.monsterController.AddSicknessIndex(feedData.snackSicknessIndexAmount);
         }
+
+        isDone = true;
     }
 
     public void CButton()

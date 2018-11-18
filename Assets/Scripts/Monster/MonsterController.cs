@@ -65,7 +65,7 @@ public class MonsterController : MonoBehaviour
     #endregion
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         monsterData = GetComponent<MonsterData>();
 
@@ -82,7 +82,7 @@ public class MonsterController : MonoBehaviour
             awakeTime += Time.deltaTime;
 
             // Sets the isSleepy flag if the time is for sleep
-            CheckIfTimeForSleep();
+            IsTimeForSleep();
         }
 
 
@@ -100,12 +100,12 @@ public class MonsterController : MonoBehaviour
             timeWithPoop = 0;
 
         // Check health status
-        if (CheckIsSick())
+        if (IsSick())
         {
             //EventManager.TriggerEvent(Events.MonsterSick);
             GameManager.Instance.SicknessText.gameObject.SetActive(true);
 
-            if (CheckIsDead())
+            if (IsDead())
             {
                 Debug.Log("The monster died. Rest in piece.");
             }
@@ -136,6 +136,11 @@ public class MonsterController : MonoBehaviour
     {
         if (poopQueueAmount != 0)
             --poopQueueAmount;
+    }
+
+    public bool IsPoopContainerEmpty()
+    {
+        return PoopContainer.transform.childCount == 0;
     }
 
     public void AddSicknessIndex(double value)
@@ -188,7 +193,7 @@ public class MonsterController : MonoBehaviour
         }
     }
 
-    bool CheckIsSick()
+    public bool IsSick()
     {
         if(sicknessIndex >= sicknessThreshold)
             return true;
@@ -196,7 +201,7 @@ public class MonsterController : MonoBehaviour
         return false;
     }
 
-    bool CheckIsDead()
+    public bool IsDead()
     {
         if (sicknessIndex >= sicknessDeathTreshold)
             return true;
@@ -204,7 +209,7 @@ public class MonsterController : MonoBehaviour
         return false;
     }
     
-    void CheckIfTimeForSleep()
+    public void IsTimeForSleep()
     {
         //var birthTime = birthDateTime.ToShortTimeString();
         //var currentTime = GameManager.Instance.CurrentGameTime.ToShortTimeString();

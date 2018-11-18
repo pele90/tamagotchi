@@ -13,7 +13,7 @@ public class PlayState : IGameState
     private int successfullGuesses;
     private bool gameFinished;
 
-    private MonsterData monsterData;
+    private MonsterController monsterController;
 
     public void Init()
     {
@@ -32,7 +32,7 @@ public class PlayState : IGameState
         playResultText = view.transform.GetChild(3).GetComponent<Text>();
         playResultText.gameObject.SetActive(false);
 
-        monsterData = GameManager.Instance.monsterController.monsterData;
+        monsterController = GameManager.Instance.monsterController;
         gameFinished = false;
     }
 
@@ -44,7 +44,7 @@ public class PlayState : IGameState
         }
 
         // TODO: check mood (number of happiness hearts and is sick) + personality
-        if(monsterData.happiness == monsterData.MAX_HUNGER)
+        if(monsterController.monsterData.happiness == monsterController.monsterData.MAX_HAPPINESS || monsterController.IsSick())
         {
             // TODO: play monster refusing animation
 

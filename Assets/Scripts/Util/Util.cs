@@ -30,6 +30,13 @@ public class Util
         image.color = shownColor;
     }
 
+    public static void MakeObjectSeeThrough(Image image)
+    {
+        Color shownColor = image.color;
+        shownColor.a = 0.5f;
+        image.color = shownColor;
+    }
+
     private class Nested
     {
         // Explicit static constructor to tell C# compiler

@@ -3862,7 +3862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.90588236, g: 0.7554155, b: 0.19999996, a: 1}
+  m_Color: {r: 0.90588236, g: 0.7554155, b: 0.19999996, a: 0.5019608}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4320,6 +4320,50 @@ Transform:
   m_Father: {fileID: 1573551383}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1062844618
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1062844619}
+  - component: {fileID: 1062844620}
+  m_Layer: 0
+  m_Name: AttentionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1062844619
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1062844618}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1172622093}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1062844620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1062844618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 707f5933d7efb2e46a12e4a07cb34aad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attentionIcon: {fileID: 925217853}
+  MaxActiveTime: 60
+  TimeBetweenAlarm: 30
+  active: 0
 --- !u!1 &1066123032
 GameObject:
   m_ObjectHideFlags: 0
@@ -4994,6 +5038,7 @@ Transform:
   - {fileID: 1523097382}
   - {fileID: 1970733869}
   - {fileID: 1432861363}
+  - {fileID: 1062844619}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6171,7 +6216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef724bb9b941e4b48966b56f369c0cef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToIdle: 5
+  timeToIdle: 60
 --- !u!4 &1432861363
 Transform:
   m_ObjectHideFlags: 0
