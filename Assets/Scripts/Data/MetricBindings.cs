@@ -19,22 +19,52 @@ public class MetricBindings : MonoBehaviour
         monsterData = GameObject.FindGameObjectWithTag("Player").GetComponent<MonsterData>();
         AgeText.text = monsterData.age.ToString();
         WeightText.text = monsterData.weight.ToString();
-
-        hungerHearts = GameObject.FindGameObjectWithTag("HungerHearts").transform;
-        happinessHearts = GameObject.FindGameObjectWithTag("HappinessHearts").transform;
-        disciplineGauge = GameObject.FindGameObjectWithTag("DisciplineGauge").GetComponent<Slider>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(hungerHearts == null)
+        {
+            var tempGameObject = GameObject.FindGameObjectWithTag("HungerHearts");
+            if(tempGameObject)
+            {
+                hungerHearts = tempGameObject.transform;
+            }
+            
+        }
+
+        if (happinessHearts == null)
+        {
+            var tempGameObject = GameObject.FindGameObjectWithTag("HappinessHearts");
+            if (tempGameObject)
+            {
+                happinessHearts = tempGameObject.transform;
+            }
+
+        }
+
+        if (disciplineGauge == null)
+        {
+            var tempGameObject = GameObject.FindGameObjectWithTag("DisciplineGauge");
+            if (tempGameObject)
+            {
+                disciplineGauge = tempGameObject.GetComponent<Slider>();
+            }
+
+        }
+
         AgeText.text = monsterData.age.ToString();
         WeightText.text = monsterData.weight.ToString();
 
-        HandleHearts(hungerHearts, monsterData.hunger);
-        HandleHearts(happinessHearts, monsterData.happiness);
+        if(hungerHearts != null)
+            HandleHearts(hungerHearts, monsterData.hunger);
 
-        disciplineGauge.value = monsterData.discipline;
+        if(happinessHearts != null)
+            HandleHearts(happinessHearts, monsterData.happiness);
+
+        if(disciplineGauge != null)
+            disciplineGauge.value = monsterData.discipline;
 
     }
 
@@ -42,8 +72,6 @@ public class MetricBindings : MonoBehaviour
     {
         // First hide all hearts
         HideAllHearts(parent);
-
-        // Then show only number of hearts as the value number
 
         // Get the last heart index
         int childCount = parent.childCount - 1;

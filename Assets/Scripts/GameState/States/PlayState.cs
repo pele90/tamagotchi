@@ -4,13 +4,16 @@ using UnityEngine.UI;
 public class PlayState : IGameState
 {
     private const string PLAY_VIEW = "play_view";
-    private const int NUMBER_OF_GUESSES = 5;
+    private const int NUMBER_OF_GUESSES = 1;
     private GameObject leftChoice;
     private GameObject rightChoice;
     private Text choiceResultText;
     private Text playResultText;
     private int guessesLeft;
     private int successfullGuesses;
+    private bool gameFinished;
+
+    private MonsterData monsterData;
 
     public void Init()
     {
@@ -28,15 +31,34 @@ public class PlayState : IGameState
         choiceResultText.gameObject.SetActive(false);
         playResultText = view.transform.GetChild(3).GetComponent<Text>();
         playResultText.gameObject.SetActive(false);
+
+        monsterData = GameManager.Instance.monsterController.monsterData;
+        gameFinished = false;
     }
 
     public void Update()
     {
+        if(gameFinished)
+        {
+            return;
+        }
+
+        // TODO: check mood (number of happiness hearts and is sick) + personality
+        if(monsterData.happiness == monsterData.MAX_HUNGER)
+        {
+            // TODO: play monster refusing animation
+
+            playResultText.text = "Don't want to play!";
+            playResultText.gameObject.SetActive(true);
+        }
+
+        // Start of the game
         if(guessesLeft == NUMBER_OF_GUESSES)
         {
             // show animation for play tutorial text
         }
 
+        // if player has available guesses and can press buttons
         if (guessesLeft == 0 && GameManager.Instance.Interactable == true)
         {
             // calculate result
@@ -64,6 +86,8 @@ public class PlayState : IGameState
                 // This will run animation on gameObject active and deactivate current view thus return to main area
                 playResultText.gameObject.SetActive(true);
             }
+
+            gameFinished = true;
         }
     }
 

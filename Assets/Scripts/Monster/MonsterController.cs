@@ -5,7 +5,7 @@ public class MonsterController : MonoBehaviour
 {
     public GameObject PoopContainer;
 
-    private DateTime birthDateTime;
+    //private DateTime birthDateTime;
 
     [HideInInspector]
     public MonsterData monsterData;
@@ -114,7 +114,7 @@ public class MonsterController : MonoBehaviour
     
     public void SetBirthDateTime(DateTime datetime)
     {
-        birthDateTime = datetime;
+        //birthDateTime = datetime;
     }
 
     public float GetPoopInterval()
