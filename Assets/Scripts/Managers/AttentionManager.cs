@@ -9,6 +9,7 @@ public class AttentionManager : MonoBehaviour
     public bool active;
 
     private Image iconImage;
+    private Image frameImage;
     private MonsterController monsterController;
     private MonsterData monsterData;
 
@@ -19,7 +20,8 @@ public class AttentionManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        iconImage = attentionIcon.GetComponent<Image>();
+        frameImage = attentionIcon.transform.GetChild(0).GetComponent<Image>();
+        iconImage = attentionIcon.transform.GetChild(1).GetComponent<Image>();
         monsterController = GameManager.Instance.monsterController;
         monsterData = monsterController.monsterData;
         initialized = false;
@@ -69,13 +71,15 @@ public class AttentionManager : MonoBehaviour
         //Etc
         notActiveTime = 0;
         active = true;
-        Util.ShowObject(iconImage);
+        Util.ShowObject(frameImage);
+        Util.ShowObject(iconImage); 
     }
 
     public void DeactivateAttentionAlarm()
     {
         activeTime = 0;
         active = false;
+        Util.MakeObjectSeeThrough(frameImage);
         Util.MakeObjectSeeThrough(iconImage);
     }
 }

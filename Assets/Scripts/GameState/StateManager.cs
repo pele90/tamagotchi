@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class StateManager : MonoBehaviour
 {
     private static StateManager _stateManager;
-    private GameObject selectedDeco;
     private GameObject currentActionObject;
     private IGameState currentSelectedState;
     private ActionType.ActionOption activeState;
@@ -13,8 +13,11 @@ public class StateManager : MonoBehaviour
     private float timeSinceLastInput = 0;
     private bool idle;
     private bool selectLastOption;
+    private AudioSource audioSource;
 
     public float timeToIdle;
+    public AudioClip changeActionClip;
+    public AudioClip selectActionClip;
 
     public static StateManager Instance
     {
@@ -57,9 +60,9 @@ public class StateManager : MonoBehaviour
     public void Init()
     {
         bool isInitialized = GameManager.Instance.GetPlayerData().GetData().IsInitialized;
+        audioSource = GetComponent<AudioSource>();
 
         Instance.StateCounter = 0;
-        Instance.selectedDeco = GameObject.FindGameObjectWithTag("SelectDeco");
 
         if (isInitialized)
         {
@@ -67,15 +70,14 @@ public class StateManager : MonoBehaviour
             Instance.activeState = ActionType.ActionOption.None;
             Instance.currentSelectedState = new FeedState();
             Instance.currentActionObject = GameObject.FindGameObjectWithTag("Feed");
-            Instance.selectedDeco = GameObject.FindGameObjectWithTag("SelectDeco");
-            SetDecoPosition(Instance.currentActionObject);
+
+            ShowActiveAction();
         }
         else
         {
             Instance.activeState = ActionType.ActionOption.Timer;
             Instance.currentSelectedState = new TimerState();
             Instance.currentActionObject = null;
-            Instance.selectedDeco.SetActive(false);
             Instance.currentSelectedState.Init();
         }
     }
@@ -94,7 +96,6 @@ public class StateManager : MonoBehaviour
             if (!idle && timeSinceLastInput > timeToIdle && GameManager.Instance.GetPlayerData().GetData().IsInitialized)
             {
                 Instance.idle = true;
-                Instance.selectedDeco.SetActive(false);
                 Instance.currentActionObject = null;
                 Instance.currentSelectedState = new TimerState();
             }
@@ -104,6 +105,7 @@ public class StateManager : MonoBehaviour
         {
             ActionType.ActionOption option;
             ActionType.ActionOptions.TryGetValue(Instance.StateCounter, out option);
+            HideLastActiveAction(Instance.currentActionObject.transform);
 
             switch (option)
             {
@@ -144,7 +146,7 @@ public class StateManager : MonoBehaviour
             }
 
             // set selected action marker on currently selected state
-            SetDecoPosition(Instance.currentActionObject);
+            ShowActiveAction();
 
             // set current state as last state
             Instance._lastStateCounter = Instance._stateCounter;
@@ -176,6 +178,8 @@ public class StateManager : MonoBehaviour
         {
             if (Instance.activeState == ActionType.ActionOption.None)
             {
+                audioSource.PlayOneShot(selectActionClip);
+
                 ActionType.ActionOption option;
                 ActionType.ActionOptions.TryGetValue(Instance.StateCounter, out option);
                 Instance.activeState = option;
@@ -204,12 +208,34 @@ public class StateManager : MonoBehaviour
         Instance.activeState = ActionType.ActionOption.None;
     }
 
-    private void SetDecoPosition(GameObject gameObject)
+    private void ShowActiveAction()
     {
-        if (!Instance.selectedDeco.activeInHierarchy)
-            Instance.selectedDeco.SetActive(true);
+        Transform parent = Instance.currentActionObject.transform;
+        Image tempImage = parent.GetChild(0).GetComponent<Image>();
 
-        Instance.selectedDeco.transform.SetParent(gameObject.transform);
-        Instance.selectedDeco.transform.position = gameObject.GetComponentInChildren<RectTransform>().GetChild(0).position;
+        var tempColor = tempImage.color;
+        tempColor.a = 1;
+        tempImage.color = tempColor;
+
+        tempImage = parent.GetChild(1).GetComponent<Image>();
+        tempColor = Instance.currentActionObject.transform.GetChild(1).GetComponent<Image>().color;
+        tempColor.a = 1;
+        tempImage.color = tempColor;
+    }
+
+    private void HideLastActiveAction(Transform parent)
+    {
+        audioSource.PlayOneShot(changeActionClip);
+
+        Image tempImage = parent.GetChild(0).GetComponent<Image>();
+
+        var tempColor = tempImage.color;
+        tempColor.a = 0.2f;
+        tempImage.color = tempColor;
+
+        tempImage = parent.GetChild(1).GetComponent<Image>();
+        tempColor = Instance.currentActionObject.transform.GetChild(1).GetComponent<Image>().color;
+        tempColor.a = 0.2f;
+        tempImage.color = tempColor;
     }
 }
