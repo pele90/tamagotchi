@@ -4,6 +4,7 @@ using UnityEngine;
 public class MonsterController : MonoBehaviour
 {
     public GameObject PoopContainer;
+    public AudioClip poopClip;
 
     //private DateTime birthDateTime;
 
@@ -19,7 +20,7 @@ public class MonsterController : MonoBehaviour
     private float poopInterval;
 
     [SerializeField]
-    private int addToSicknessIndexInterval;
+    private double addToSicknessIndexInterval;
 
     [SerializeField]
     private double poopSicknessIndexAmount;
@@ -62,12 +63,15 @@ public class MonsterController : MonoBehaviour
     [SerializeField]
     private double insufficientSleepSickness;
 
+    private AudioSource audioSource;
+
     #endregion
 
     // Use this for initialization
     void Awake()
     {
         monsterData = GetComponent<MonsterData>();
+        audioSource = GetComponent<AudioSource>();
 
         // TODO: set fields based on personality
     }
@@ -134,6 +138,7 @@ public class MonsterController : MonoBehaviour
 
     public void ReducePoopQueue()
     {
+        audioSource.PlayOneShot(poopClip);
         if (poopQueueAmount != 0)
             --poopQueueAmount;
     }

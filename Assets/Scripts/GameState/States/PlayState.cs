@@ -87,6 +87,7 @@ public class PlayState : IGameState
                 playResultText.gameObject.SetActive(true);
             }
 
+            GameManager.Instance.Interactable = false;
             gameFinished = true;
         }
     }
