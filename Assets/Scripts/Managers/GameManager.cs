@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
     private PlayerData playerData;
     private static GameManager _gameManager;
 
-    public GameObject currentTimeText;
     public UnityEngine.UI.Text SicknessText;
     public UnityEngine.UI.Image BulbImage;
 
@@ -69,9 +68,6 @@ public class GameManager : MonoBehaviour
 
         if(playerData.GetData().IsInitialized)
             CurrentGameTime = CurrentGameTime.AddSeconds(Time.deltaTime);
-
-        (currentTimeText.GetComponent<UnityEngine.UI.Text>()).text = CurrentGameTime.ToString("HH:mm:ss", System.Globalization.CultureInfo.CreateSpecificCulture("hr-HR"));
-
     }
 
     void LoadTime()
