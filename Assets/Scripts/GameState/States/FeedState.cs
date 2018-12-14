@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
-
+using UnityEngine.UI;
 public class FeedState : IGameState
 {
     public ActionType.FeedOption CurrentFeedOption { get; set; }
 
     private const string FEED_VIEW = "feed_view";
-    private Transform meal;
-    private Transform snack;
+    private Image meal;
+    private Image snack;
+    private GameObject panel;
     private FeedData feedData;
     private MonsterController monsterController;
     private bool isDone;
@@ -14,21 +15,37 @@ public class FeedState : IGameState
 
     public void Init()
     {
-        feedData = ViewManager.Instance.GetView(FEED_VIEW).GetComponent<FeedData>();
-
-        var view = ViewManager.Instance.GetView(FEED_VIEW);
-
-        CurrentFeedOption = ActionType.FeedOption.Meal;
-        meal = view.transform.GetChild(0);
-        meal.gameObject.SetActive(true);
-
-        snack = view.transform.GetChild(1);
-        snack.gameObject.SetActive(false);
-
-        ViewManager.Instance.ActivateView(FEED_VIEW);
-
         monsterController = GameManager.Instance.monsterController;
-        isDone = false;
+
+        if (monsterController.monsterData.hunger == monsterController.monsterData.MAX_HUNGER || monsterController.IsSick())
+        {
+            // TODO: play monster refusing animation
+            Debug.Log("Don't want to eat.");
+            ViewManager.Instance.DeactivateView(FEED_VIEW);
+        }
+        else
+        {
+            feedData = ViewManager.Instance.GetView(FEED_VIEW).GetComponent<FeedData>();
+
+            var view = ViewManager.Instance.GetView(FEED_VIEW);
+
+            CurrentFeedOption = ActionType.FeedOption.Meal;
+
+            panel = view.transform.GetChild(0).gameObject;
+            panel.SetActive(true);
+
+            meal = view.transform.GetChild(1).GetComponent<Image>();
+            meal.gameObject.SetActive(true);
+            Util.ShowObject(meal);
+
+            snack = view.transform.GetChild(2).GetComponent<Image>();
+            snack.gameObject.SetActive(true);
+            Util.MakeObjectSeeThrough(snack);
+
+            ViewManager.Instance.ActivateView(FEED_VIEW);
+
+            isDone = false;
+        }       
     }
 
     public void Update()
@@ -54,8 +71,13 @@ public class FeedState : IGameState
 
     public void BButton()
     {
+        // hide food choices
+        panel.SetActive(false);
+        meal.gameObject.SetActive(false);
+        snack.gameObject.SetActive(false);
+
         // TODO: Do animation of falling meal and monster eating the meal
-        Animator animator = ViewManager.Instance.GetView(FEED_VIEW).transform.GetChild(2).GetComponent<Animator>();
+        Animator animator = ViewManager.Instance.GetView(FEED_VIEW).transform.GetChild(3).GetComponent<Animator>();
         animator.Play("food_falling");
         GameManager.Instance.Interactable = false;
 
@@ -86,17 +108,15 @@ public class FeedState : IGameState
         {
             CurrentFeedOption = ActionType.FeedOption.Snack;
 
-            // TODO: change feed option visually
-            meal.gameObject.SetActive(false);
-            snack.gameObject.SetActive(true);
+            Util.MakeObjectSeeThrough(meal);
+            Util.ShowObject(snack);
         }
         else
         {
             CurrentFeedOption = ActionType.FeedOption.Meal;
 
-            // TODO: change feed option visually
-            meal.gameObject.SetActive(true);
-            snack.gameObject.SetActive(false);
+            Util.ShowObject(meal);
+            Util.MakeObjectSeeThrough(snack);
         }
     }
 }

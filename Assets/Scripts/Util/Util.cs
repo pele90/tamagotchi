@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class Util
 {
     private Util(){}
+    private static float alphaSeeThroughValue = .3f;
 
     public static Util Instance
     {
@@ -33,7 +34,7 @@ public class Util
     public static void MakeObjectSeeThrough(Image image)
     {
         Color shownColor = image.color;
-        shownColor.a = 0.5f;
+        shownColor.a = alphaSeeThroughValue;
         image.color = shownColor;
     }
 
