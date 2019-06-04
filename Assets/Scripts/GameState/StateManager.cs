@@ -66,7 +66,6 @@ public class StateManager : MonoBehaviour
 
         if (isInitialized)
         {
-           
             Instance.activeState = ActionType.ActionOption.None;
             Instance.currentSelectedState = new FeedState();
             Instance.currentActionObject = GameObject.FindGameObjectWithTag("Feed");
@@ -105,7 +104,13 @@ public class StateManager : MonoBehaviour
         {
             ActionType.ActionOption option;
             ActionType.ActionOptions.TryGetValue(Instance.StateCounter, out option);
-            HideLastActiveAction(Instance.currentActionObject.transform);
+
+            GameObject currentAction = Instance.currentActionObject;
+            if(currentAction != null)
+            {
+                Transform currentActionTransform = currentAction.transform;
+                HideLastActiveAction(currentActionTransform);
+            }
 
             switch (option)
             {
@@ -197,7 +202,7 @@ public class StateManager : MonoBehaviour
         if (GameManager.Instance.Interactable)
         {
             if (Instance.activeState == ActionType.ActionOption.None)
-                throw new System.NotImplementedException();
+                return;
             else
                 Instance.currentSelectedState.CButton();
         }
